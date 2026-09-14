@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trajeto Casa-Trabalho</title>
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>Trajeto</h1>
+</header>
+
+<main id="view-home" class="view">
+  <section class="card">
+    <p class="muted" id="statusLine">Configure sua chave TomTom, o endereço do trabalho e os endereços candidatos na aba Config.</p>
+  </section>
+
+  <section class="card">
+    <button id="btnLeaveHome" class="bigbtn bigbtn-primary">🏠→💼 Saí de casa agora</button>
+    <button id="btnLeaveWork" class="bigbtn bigbtn-secondary">💼→🏠 Saí do trabalho agora</button>
+  </section>
+
+  <section id="resultsBox" class="card hidden">
+    <h2 id="resultsTitle">Resultado</h2>
+    <div id="resultsList"></div>
+  </section>
+</main>
+
+<main id="view-config" class="view hidden">
+  <section class="card">
+    <h2>Chave da API (TomTom)</h2>
+    <p class="muted">Crie uma chave grátis em <a href="https://developer.tomtom.com/" target="_blank" rel="noopener">developer.tomtom.com</a> (não precisa cartão).</p>
+    <input id="apiKeyInput" type="text" placeholder="Cole sua chave TomTom aqui" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <button id="saveKeyBtn" class="btn">Salvar chave</button>
+  </section>
+
+  <section class="card">
+    <h2>Trabalho (ponto B, fixo)</h2>
+    <div id="workDisplay" class="addr-display muted">Nenhum endereço configurado.</div>
+    <input id="workInput" type="text" placeholder="Endereço completo do trabalho">
+    <button id="workSaveBtn" class="btn">Buscar e salvar</button>
+  </section>
+
+  <section class="card">
+    <h2>Endereços candidatos (pontos A)</h2>
+    <div id="homesList"></div>
+    <input id="homeLabelInput" type="text" placeholder="Apelido (ex: Apto Jardim X)">
+    <input id="homeAddrInput" type="text" placeholder="Endereço completo do candidato">
+    <button id="homeAddBtn" class="btn">Buscar e adicionar</button>
+  </section>
+
+  <section class="card">
+    <h2>Dados</h2>
+    <button id="exportBtn" class="btn">Exportar histórico (CSV)</button>
+    <button id="exportJsonBtn" class="btn">Exportar histórico (JSON)</button>
+    <button id="wipeBtn" class="btn btn-danger">Apagar todo o histórico</button>
+  </section>
+</main>
+
+<main id="view-history" class="view hidden">
+  <section class="card">
+    <h2>Filtro</h2>
+    <select id="filterHome"></select>
+    <select id="filterDir">
+      <option value="all">Ambas direções</option>
+      <option value="toWork">Casa → Trabalho</option>
+      <option value="toHome">Trabalho → Casa</option>
+    </select>
+  </section>
+
+  <section class="card">
+    <h2>Resumo</h2>
+    <div id="statsBox"></div>
+  </section>
+
+  <section class="card">
+    <h2>Gráfico (min por dia, colorido por dia da semana)</h2>
+    <div id="chartBox"></div>
+  </section>
+
+  <section class="card">
+    <h2>Registros</h2>
+    <div id="tableBox"></div>
+  </section>
+</main>
+
+<nav class="tabbar">
+  <button class="tabbtn active" data-view="home">Início</button>
+  <button class="tabbtn" data-view="history">Histórico</button>
+  <button class="tabbtn" data-view="config">Config</button>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
